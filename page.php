@@ -31,6 +31,7 @@ if( is_front_page()) {
     $context['options_h_menu'] = get_fields('options')['h_menu'];
     $context['options_slot_block'] = get_fields('options')['slot_block'];
     $context['options_casino_block'] = get_fields('options')['casino_block'];
+    $context['options_keno_block'] = get_fields('options')['keno_block'];
     Timber::render('templates/page-home.twig', $context);
 }else {
     Timber::render( array( 'page-' . $timber_post->post_name . '.twig', 'page.twig' ), $context );

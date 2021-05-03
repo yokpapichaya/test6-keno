@@ -185,6 +185,8 @@ if (sessionStorage.getItem("token")) {
                     }
                 })
 
+                var linkURLkeno = [];
+
                 $('.casino_game').on('click', function () {
                     var id = $(this).attr("id");
                     var gameURL;
@@ -268,6 +270,67 @@ if (sessionStorage.getItem("token")) {
                                             alert(resp.data.message)
                                             gameWindow.close();
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                $('.getlinkkeno').each(function (index) {
+                    let _this = $(this).val();
+                    let arrayThis = _this.split(',');
+                    linkURLkeno.push(arrayThis);
+                    if ($('.getlinkkeno').length == index + 1) {
+                        $('.getlinkkeno').remove();
+                    }
+                })
+
+                $('.keno').on('click', function () {
+                    var id = $(this).attr("id");
+                    var gameURL;
+
+                    $.each(linkURLkeno, function (index, value) {
+                        if (value[0] == id) {
+                            gameURL = value[1];
+                        }
+                    });
+                    checkkeno();
+                    async function checkkeno() {
+                        let chkstatus = await checkLogin();
+                        if (chkstatus == true) {
+                            let uri = gameURL;
+                            if (isMobile()) {
+                                uri = uri + 'MB'
+                            } else {
+                                uri = uri + 'PC'
+                            }
+                            if (isLine()) {
+                                let resp = await axios.get(uri)
+                                if (resp.data.code == 0) {
+                                    location.href = resp.data.url
+                                } else {
+                                    if (resp.data.code == 1005) {
+                                        alert(resp.data.message)
+                                        sessionStorage.clear();
+                                        window.location.href = location.hostname + '/login';
+                                    } else {
+                                        alert(resp.data.message)
+                                    }
+                                }
+                            } else {
+                                let resp = await axios.get(uri);
+                                checkWindow();
+                                if (resp.data.code == 0) {
+                                    gameWindow.location.href = resp.data.url
+                                } else {
+                                    if (resp.data.code == 1005) {
+                                        alert(resp.data.message)
+                                        sessionStorage.clear();
+                                        window.location.href = location.hostname + '/login';
+                                    } else {
+                                        alert(resp.data.message)
+                                        gameWindow.close();
                                     }
                                 }
                             }

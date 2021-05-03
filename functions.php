@@ -198,6 +198,12 @@ class StarterSite extends Timber\Site {
 			));
 
 			acf_add_options_page(array(
+				'page_title' 	=> 'คีโน',
+				'menu_slug' 	=> 'p_keno',
+				'icon_url' => 'dashicons-format-aside',
+			));
+
+			acf_add_options_page(array(
 				'page_title' 	=> 'ติดต่อเรา',
 				'menu_slug' 	=> 'contact',
 				'icon_url' => 'dashicons-phone',
