@@ -1,0 +1,34 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+
+<section class="sec-login">
+    <div class="container">
+        <form method="post" class="form-action check-btn fadeInUp text-center" data-action="login">
+            <div class="box-login">
+                <div class="box-login__logo"><img src="{{ TimberImage(options_logo_website).src }}"></div>
+                <div class="box-login__instruction">เว็บคาสิโนสด เบอร์ 1 ของประเทศไทย</div>
+                <div class="box-login__input">
+                    {% set login = options_login_data %}
+                    <input type="hidden" name="prefix" id="prefix" value="{{ login.prefix }}">
+                    <input type="hidden" name="substring" id="substring" value="{{ login.substring }}">
+                    <input type="hidden" name="loginurl" id="loginurl" value="{{ login.url_login }}">
+                    <div class="username input-box"><i class="i-username"></i><input type="text" name="username" id="username" placeholder="{{ __('ชื่อผู้ใช้', 'template')  }}"></div>
+                    <div class="password input-box"><i class="i-password"></i><input type="password" name="password" id="password" placeholder="{{ __('รหัสผ่าน', 'template')  }}"></div>
+                    <div class="error-pass">รหัสผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง</div>
+                </div>
+                <div class="box-login__btn">
+                    <!-- <div id="btn-login" class="btn gradient">{{ __('เข้าสู่ระบบ', 'template')  }}</div> -->
+                    <button type="submit" class="btn gradient btn-login">เข้าสู่ระบบ</button>
+                </div>
+                <div class="box-login__register">
+                    ต้องการสมัครสมาชิกใหม่ใช่ไหม? 
+                    <a href="{{ site.link }}/register" target="_blank">สมัครสมาชิก</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock %}

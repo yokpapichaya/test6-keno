@@ -1,0 +1,79 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+// --------------------------------------------------
+$white:               #fff !default;
+$black:               #000 !default;
+$brown:               #131110!default;
+$theme-color:         #e6be62!default;
+$dark-borwn:          #110f0e!default;
+$gray:                #0e0c0c!default;
+$gray-input:          #7b766b!default;
+$blue-footer:          #161f35!default;
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:             #000 !default;
+//** Global text color on `<body>`.
+$text-color:           $theme-color !default;
+
+
+//** Global textual link color.
+$link-color: $white !default;
+//** Link hover color.
+$link-hover-color:      #eab12b!default;
+//** Link hover decoration.
+$link-hover-decoration: none !default;
+
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-base:  'Kanit', sans-serif;
+
+
+$font-size-base:        1.6rem !default;
+
+$font-size-h1:          2.8rem !default;
+$font-size-h2:          2.4rem !default;
+$font-size-h3:          2rem !default;
+$font-size-h4:          1.6rem !default;
+
+
+//== Screen size
+//
+// NOTE: calculated from `rem` start with size iPhone5 (568px*320px)
+$screen-width:     42.6rem;
+$screen-height:    23.6rem;
+
+
+
+//== Media queries breakpoints
+//
+// For Container centered.
+$mobile-sm: 320px !default;
+$mobile: 375px !default;
+$tablet: 768px !default;
+$tablet-wide: 1024px !default;
+$desktop: 1366px !default;
+
+$gradient:  linear-gradient(to bottom, #000000, #070606, #0d0c0d, #111112, #151516, #18191a, #1c1d1d, #202121, #262627, #2b2c2c, #313131, #373737);
+$gradient-line: linear-gradient(270deg, rgba(184, 146, 71, 0) 0, #d4a947 50%, #fcd87d 75%, rgba(62, 37, 29, 0));
+$gradient-banner: linear-gradient(to right, #1c1817, #1c18179c, #1c18177a, #1c181791, #1c18177a, #1c181700, #1c181700, #1c181700, #1c181773, #1c18179c, #1c1817e0, #1c1817);
+$gradient-list:linear-gradient(to bottom, #051937, #0a1d3a, #6a6b6d6b, #14264100, #192b4400);
+$gradient-gold: linear-gradient(90deg, #976a36 0, #d4a54d 25%, #fcdf88 50%, #ffd577 75%, #eec465);
+$gradient-menu: linear-gradient(to bottom, #000000, #070606, #0d0c0d, #111112, #151516, #18191a, #1c1d1d, #202121, #262627, #2b2c2c, #313131, #373737);
+$gradient-footer:linear-gradient(to top, #000000, #070606, #0d0c0d, #111112, #151516, #18191a, #1c1d1d, #202121, #262627, #2b2c2c, #313131, #373737);
+
+//== Media queries breakpoints
+$mobile-sm: 320px !default;
+$mobile: 375px !default;
+$tablet: 768px !default;
+$tablet-wide: 1024px !default;
+$desktop: 1200px !default;

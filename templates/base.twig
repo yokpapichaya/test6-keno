@@ -1,0 +1,19 @@
+{% block html_head_container %}
+	{% include 'templates/html-header.twig' %}
+{% endblock %}
+
+	<body class="{{body_class}}" style="background-image: url('{{ TimberImage(options_bg_website).src }}');">
+	<div class="bg-overlay"></div>
+		{% include 'templates/partial/galaxy.twig' %}
+		{% block header %}
+			{% include 'templates/header.twig' %}
+		{% endblock %}
+
+		{% block content %}
+		{% endblock %}
+		
+		{% block footer %}
+			{% include 'templates/footer.twig' %}
+		{% endblock %}
+	</body>
+</html>

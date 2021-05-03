@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+<section class="box-list-game">
+	<div class="container">
+		<div id="{{ post.id }}" class="row game-list"></div>
+	</div>
+</section>
+{% endblock %}

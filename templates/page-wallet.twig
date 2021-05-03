@@ -1,0 +1,14 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+ <section class="">
+    <div id="app">
+        <main id="main_container">
+            <iframe class="h_iframe" src="" frameborder="0" width="100%" style="height: 80vh;"></iframe>
+            <input type="hidden" name="wallet-api" id="wallet-api" value="{{ options_wallet_api }}">
+        </main>
+    </div> 
+</section> 
+
+
+{% endblock %}

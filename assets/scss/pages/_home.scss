@@ -1,0 +1,56 @@
+.home{
+    .sec-tab{
+        .nav-tabs {
+            border-bottom: 0.1rem solid $theme-color;
+            .nav-link{
+                color: $white;
+                padding: 1.5rem 0;
+                border-bottom: 0.1rem solid transparent;
+                &.active,
+                &:hover{
+                    background-image: $gradient-gold;
+                    border-bottom: 0.1rem solid transparent;
+                    color: $body-bg;
+                }
+                &#nav-profile-tab{
+                    position: relative;
+                    &::before{
+                        content: "";
+                        background: linear-gradient(180deg, transparent 0, #e6be62);
+                        width: 1px;
+                        height: 100%;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                    &::after{
+                        content: "";
+                        background: linear-gradient(180deg, transparent 0, #e6be62);
+                        width: 1px;
+                        height: 100%;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+            }
+        }
+        .tab-content{ 
+            padding: 2rem 0;
+        }
+    }
+    .sec-icons{
+        .icons-container{
+            @include flex();
+            margin-bottom: 2rem;
+            img{
+                margin: 0 auto;
+                width: 75%;
+                transition: $gobal-transition;
+                &:hover{
+                    transform: scale(1.02);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,117 @@
+<header id="myHeader">
+    <div class="main-haeader">
+        <div class="navbar">
+            <div class="container">
+                <a href="{{ site.url }}" class="logo"><img src="{{ TimberImage(options_logo_website).src }}"
+                        alt="logo website"></a>
+                <div class="button-container">
+                    <a href="{{ site.url }}/login" class="btn login" data-action="login">
+                        <i class="i-login"></i>
+                        <span>{{ __('เข้าสู่ระบบ', 'template')  }}</span>
+                    </a>
+                    <a href="{{ site.url }}/register" class="btn join-now" data-action="login">
+                        <i class="i-user"></i>
+                        <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
+                    </a>
+                    <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();"
+                        data-action="logout">
+                        <i class="i-login"></i>
+                        <span>{{ __('ออกจากระบบ', 'template')  }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-hamburger">
+            <span class="menu-hamburger__line"></span>
+            <span class="menu-hamburger__line"></span>
+            <span class="menu-hamburger__line"></span>
+        </div>
+    </div>
+    <div class="mobile-menu">
+        <nav class="nav js-nav">
+            <ul class="nav__list js-nav__list">
+                {% for item in options_menu_group %}
+                <li class="nav__item {% if item.sub_menu == true %}has-child{% endif %}">
+                    {% if item.menu_link == 'in' %}
+                        {% if TimberPost(mobile.menu_page).slug == 'login' %}
+                            <a href="{{ TimberPost(item.menu_page).link }}" class="nav__link" data-action="login">{{ item.menu_text }}</a>
+                        {% else %}
+                            <a href="{{ TimberPost(item.menu_page).link }}" class="nav__link">{{ item.menu_text }}</a>
+                        {% endif %}
+                    {% elseif item.menu_link == 'out' %}
+                        <a href="{{ item.link_external }}" target="_blank" class="nav__link">{{ item.menu_text }}</a>
+                    {% else %}
+                        <a href="javascript:void(0)" target="_blank" class="nav__link sport-item" data-state="{{ item.menu_link }}">{{ item.menu_text }}</a>
+                    {% endif %}
+                    {% if item.sub_menu == true %}
+                        <i class="i-arrow-white"></i>
+                        <div class="sub-menu">
+                            <ul class="nav-drop">
+                                {% for child in item.submenu_group %}
+                                <li class="nav-drop-item">
+                                    <a href="{{ child.submenu_link }}">{{ child.submenu_text }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="button-container">
+                <a href="{{ site.url }}/login" class="btn login" data-action="login">
+                    <i class="i-login"></i>
+                    <span>{{ __('เข้าสู่ระบบ', 'template')  }}</span>
+                </a>
+                <a href="{{ site.url }}/register" class="btn join-now" data-action="login">
+                    <i class="i-user"></i>
+                    <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
+                </a>
+                <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();" data-action="logout">
+                    <i class="i-login"></i>
+                    <span>{{ __('ออกจากระบบ', 'template')  }}</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="menu-below">
+        <div class="menu-container">
+            {% set count = (options_menu_mobile|length / 2)|round %}
+            {% for mobile in options_menu_mobile %}
+            {% if mobile.menu_link == 'in' %}
+            {% if TimberPost(mobile.menu_page).slug == 'login' %}
+            <a href="{{ TimberPost(mobile.menu_page).link }}"
+                class="menu-list btn-check {% if count == loop.index %}btn-center{% endif %}" data-action="login">
+                <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
+                <div class="menu-list__text">{{ mobile.menu_text }}</div>
+            </a>
+            <a href="javascript:void(0)" onclick="window.location.href='';sessionStorage.clear();"
+                class="menu-list {% if count == loop.index %}btn-center{% endif %}" data-action="logout">
+                <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
+                <div class="menu-list__text">{{ __('ออกจากระบบ', 'template') }}</div>
+            </a>
+            {% else %}
+            <a href="{{ TimberPost(mobile.menu_page).link }}"
+                class="menu-list {% if TimberPost(mobile.menu_page).slug == 'wallet' %}btn-check{% endif %}{% if count == loop.index %}btn-center{% endif %}">
+                <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
+                <div class="menu-list__text">{{ mobile.menu_text }}</div>
+            </a>
+            {% endif %}
+            {% elseif mobile.menu_link == 'out' %}
+            <a href="{{ mobile.link_external }}" target="_blank"
+                class="menu-list {% if count == loop.index %}btn-center{% endif %}">
+                <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
+                <div class="menu-list__text">{{ mobile.menu_text }}</div>
+            </a>
+            {% else %}
+            <a href="javascript:void(0)" target="_blank"
+                class="menu-list sport-item {% if count == loop.index %}btn-center{% endif %}"
+                data-state="{{ mobile.menu_link }}">
+                <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
+                <div class="menu-list__text">{{ mobile.menu_text }}</div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</header>

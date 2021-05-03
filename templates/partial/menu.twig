@@ -1,0 +1,31 @@
+<div class="menu-gobal">
+    <div class="container">
+        <div class="box-menu-container">
+            {% for item in options_menu_group %}
+                {% if item.menu_link == 'in' %}
+                    {% if TimberPost(item.menu_page).slug == 'login' %}
+                    <a href="{{ TimberPost(item.menu_page).link }}" class="box-menu" data-action="login">
+                        <div class="box-menu__icon"><img src="{{ TimberImage(item.menu_icon).src }}"></div>
+                        <div class="box-menu__text">{{ item.menu_text }}</div>
+                    </a>
+                    {% else %}
+                    <a href="{{ TimberPost(item.menu_page).link }}" class="box-menu{% if TimberPost(item.menu_page).slug == 'wallet' %} btn-check{% endif %}">
+                        <div class="box-menu__icon"><img src="{{ TimberImage(item.menu_icon).src }}"></div>
+                        <div class="box-menu__text">{{ item.menu_text }}</div>
+                    </a>
+                    {% endif %}
+                {% elseif item.menu_link == 'out' %}
+                    <a href="{{ item.link_external }}" target="_blank" class="box-menu">
+                        <div class="box-menu__icon"><img src="{{ TimberImage(item.menu_icon).src }}"></div>
+                        <div class="box-menu__text">{{ item.menu_text }}</div>
+                    </a>
+                {% else %}
+                    <a href="ambth.com" target="_blank" class="box-menu sport-item">
+                        <div class="box-menu__icon"><img src="{{ TimberImage(item.menu_icon).src }}"></div>
+                        <div class="box-menu__text">{{ item.menu_text }}</div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

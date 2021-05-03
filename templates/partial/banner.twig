@@ -1,0 +1,12 @@
+<section class="sec-banner">
+    <div class="container">
+          <div class="swiper-container" id="h-banner">
+            <div class="overlay"></div>
+            <div class="swiper-wrapper">
+            {% for banner in options_h_banner_image %}
+                <div class="swiper-slide"><img src="{{ TimberImage(banner).src }}" alt=""></div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

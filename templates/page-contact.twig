@@ -1,0 +1,28 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+
+<section class="sec-page-content" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <h2 class="title">{{ options_c_title }}</h2>
+        {{ options_c_content }}
+    </div>
+</section>
+
+<section class="sec-contact" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="box-contact-wrap">
+            {% for box in options_c_group %}
+            <div class="box-contact">
+                <div class="box-contact__qrcode">
+                    <img src="{{ TimberImage(box.c_qrcode).src }}" class="qrcode" alt="qrcode">
+                </div>
+                <div class="box-contact__btn">
+                    <a href="{{ box.c_link }}" target="_blank" class="box-contact__lineid btn">{{ box.c_id }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

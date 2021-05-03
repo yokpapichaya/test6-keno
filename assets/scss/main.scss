@@ -1,0 +1,21 @@
+@import '~swiper/css/swiper.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+
+@import 'settings/variables';
+@import 'settings/normalize';
+@import 'settings/mixin';
+@import 'settings/gobal';
+@import 'settings/typography';
+
+@import 'layouts/header';
+@import 'layouts/footer';
+
+
+@import 'pages/home';
+@import 'pages/promotion';
+
+@import 'components/button';
+@import 'components/banner';
+@import 'components/icons';
+@import 'components/box';
+@import 'components/galaxy';

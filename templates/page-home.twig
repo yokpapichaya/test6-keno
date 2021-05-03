@@ -1,0 +1,96 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<section class="sec-banner">
+    <div class="container row">
+        <div class="h-banner col-12 col-md-7 col-md-8 col-lg-9">
+            <div class="swiper-container" id="h-banner">
+            <div class="overlay"></div>
+            <div class="swiper-wrapper">
+            {% for banner in options_h_banner_image %}
+                 <div class="swiper-slide"><img src="{{ TimberImage(banner).src }}" alt=""></div>
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+        <div class="h-menu col-12 col-md-4 col-lg-3">
+            {% set menu = options_h_menu %}
+            <div class="box-menu">
+                <div class="box-menu__title">{{ menu.h_menu_title }}</div>
+                <div class="box-menu__menu">
+                    {% for box in menu.h_menu_group %}
+                    <a href="{% if box.h_menu_choose == 'out' %}{{ box.h_menu_url }}{% elseif box.h_menu_choose == 'in' %}{{ box.h_menu_link }}{% else %}ambth.com{% endif %}" {% if box.h_menu_choose != 'in' %}target="_blank"{% endif %} class="box-menu-submenu {% if box.h_menu_choose == 'sport' %}sport-item{% endif %}">{{ box.h_menu_text }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sec-tab">
+    <div class="container">
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab" aria-controls="nav-slot" aria-selected="true">สล็อต</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-casino" role="tab" aria-controls="nav-casino" aria-selected="false">คาสิโน</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
+            <div class="row">
+              {% for box in options_slot_block %}
+              {% set content = TimberPost(box.slot_block_link) %}
+              <div class="col-6 col-md-3">
+                  <a href="{{ content.guid }}" class="box-product" data-aos="fade-up" data-aos-duration="1000">
+                      {% if box.slot_block_hot == true %} 
+                          <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
+                      {% endif %}
+                      <div class="box-product__overlay"><div class="btn btn-game">เล่นเกม</div></div>
+                      <div class="box-product__logo">
+                          <div class="logo"><img src="{{ TimberImage(box.slot_block_logo).src }}"></div>
+                      </div>
+                  </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-casino" role="tabpanel" aria-labelledby="nav-casino-tab">
+            <div class="row">
+              {% for box in options_casino_block %}
+              {% set content = TimberPost(box.casino_block_link) %}
+              <div class="col-6 col-md-3">
+                  <div class="box-product casino_game" id="{{ content.ID }}" data-aos="fade-up" data-aos-duration="1000">
+                      <input type="hidden" value="{{ content.ID }},{{ content.casino_prefix }}" class="getlink"/>                <div class="box-product__logo">
+                      {% if box.casino_block_hot == true %} 
+                          <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
+                      {% endif %}
+                          <div class="box-product__overlay"><div class="btn btn-game">เล่นเกม</div></div>
+                          <div class="logo"><img src="{{ TimberImage(box.casino_block_logo).src }}"></div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="sec-icons">
+  <div class="container">
+    <div class="icons-container">
+      <div class="icon"><img src="{{ theme.path }}/images/accer-1.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-2.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-3.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-4.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-5.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-6.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-7.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-8.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-9.png" alt=""></div>
+      <div class="icon"><img src="{{ theme.path }}/images/accer-10.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

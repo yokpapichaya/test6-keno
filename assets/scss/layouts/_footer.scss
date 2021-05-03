@@ -1,0 +1,64 @@
+footer{
+    width: 100%;
+    // padding: 6rem 0 0rem 0;
+    color: $white;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 0.1rem;
+        background-image: $gradient-line;
+    }
+    h2{
+        text-align: center;
+        text-transform: uppercase;
+        padding: 2rem 0;
+    }
+    .logogame{
+        @include flexcenter();
+    }
+    .footer-game{
+        margin-top: 1rem;
+        width: 6%;
+        margin-left: 1rem;
+        @media screen and (max-width: 767px) {
+            width: 15%;
+        }
+    }
+    .footer-payment{
+        width: 100%;
+        &__title{
+            text-align: center;
+            margin-bottom: 4rem;
+            font-family: $font-family-base;
+        }
+        &__logo{
+            >img{
+                margin: 0 auto;
+                width: 35%;
+                @media screen and (max-width: 1200px) {
+                    width: 45%;
+                 }
+            }
+        }
+    }
+    .footer-copyright{
+        margin-top: 4rem;
+        padding: 1rem 0;
+        text-align: center;
+        background-image: $gradient-footer;
+        .powered{
+            font-size: 1.3rem;
+            a{
+                color: $white;
+                text-decoration: none;
+                &:hover{
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+}

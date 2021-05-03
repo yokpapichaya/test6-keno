@@ -1,0 +1,19 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+    <section class="sec-promotion">
+        <div class="container">
+            {% for p_box in options_promotion %}
+            <div class="box-promotion row" data-aos="fade-up" data-aos-duration="1000">
+                <div class="box-promotion__image col-sm-8 col-12"><img src="{{ TimberImage(p_box.pro_image).src }}"></div>
+                <div class="box-promotion__detail col-sm-4 col-12">
+                <div class="categories"><h4>{{ p_box.pro_subject }}</h4></div>
+                <div class="description">
+                    {{ p_box.pro_condition }}
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

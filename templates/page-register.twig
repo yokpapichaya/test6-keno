@@ -1,0 +1,11 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/menu.twig' %}
+<section class="">
+    <div id="app">
+        <main id="main_container">
+            <iframe class="h_iframe" src="{{ options_api_register }}" frameborder="0" width="100%"  style="height: 80vh;"></iframe>
+        </main>
+    </div> 
+</section>
+{% endblock %}
