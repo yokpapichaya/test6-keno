@@ -14,7 +14,7 @@
             {% for box in options_slot_block %}
             {% set content = TimberPost(box.slot_block_link) %}
             <div class="col-6 col-md-3">
-                <a href="{{ content.guid }}" class="box-product" data-aos="fade-up" data-aos-duration="1000">
+                <a href="{{ content.guid }}" class="box-product slot_game" data-slug="{{ content.postslug }}" data-aos="fade-up" data-aos-duration="1000">
                     {% if box.slot_block_hot == true %} 
                         <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
                     {% endif %}

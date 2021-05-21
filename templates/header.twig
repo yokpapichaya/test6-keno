@@ -13,7 +13,7 @@
                         <i class="i-user"></i>
                         <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
                     </a>
-                    <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();"
+                    <div class="btn logout" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');"
                         data-action="logout">
                         <i class="i-login"></i>
                         <span>{{ __('ออกจากระบบ', 'template')  }}</span>
@@ -67,7 +67,7 @@
                     <i class="i-user"></i>
                     <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
                 </a>
-                <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();" data-action="logout">
+                <div class="btn logout" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');" data-action="logout">
                     <i class="i-login"></i>
                     <span>{{ __('ออกจากระบบ', 'template')  }}</span>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
                 <div class="menu-list__text">{{ mobile.menu_text }}</div>
             </a>
-            <a href="javascript:void(0)" onclick="window.location.href='';sessionStorage.clear();"
+            <a href="javascript:void(0)" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');"
                 class="menu-list {% if count == loop.index %}btn-center{% endif %}" data-action="logout">
                 <div class="menu-list__icon"><img src="{{ TimberImage(mobile.menu_icon).src }}"></div>
                 <div class="menu-list__text">{{ __('ออกจากระบบ', 'template') }}</div>

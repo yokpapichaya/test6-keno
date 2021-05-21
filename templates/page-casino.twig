@@ -14,7 +14,7 @@
             {% for box in options_casino_block %}
             {% set content = TimberPost(box.casino_block_link) %}
             <div class="col-6 col-md-3">
-                <div class="box-product casino_game" id="{{ content.ID }}" data-aos="fade-up" data-aos-duration="1000">
+                <div class="box-product casino_game" id="{{ content.ID }}" data-slug="{{ content.casino_parameter }}" data-aos="fade-up" data-aos-duration="1000">
                     <input type="hidden" value="{{ content.ID }},{{ content.casino_prefix }}" class="getlink"/>                <div class="box-product__logo">
                     {% if box.casino_block_hot == true %} 
                         <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>

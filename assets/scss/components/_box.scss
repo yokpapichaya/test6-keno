@@ -57,6 +57,25 @@
         }
     }
 
+    &.disabled{
+        pointer-events: none !important;
+        filter: grayscale(100);
+        .noti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            color: $white;
+            background-color: red;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            z-index: 1;
+            font-family: $font-family-base;
+        }
+    }
+
     &__overlay {
         background-color: rgba(0, 0, 0, 0.8);
         width: 100%;
@@ -252,7 +271,11 @@
 
 .box-list-game {
     margin-bottom: 2rem;
-
+    h3{
+        margin: 4rem;
+        text-align: center;
+        min-height: 80vh;
+    }
     .box-card-promotion {
         border-radius: 0.5rem;
         border: 0.1rem solid $theme-color;

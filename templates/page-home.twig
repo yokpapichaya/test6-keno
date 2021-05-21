@@ -41,7 +41,7 @@
               {% for box in options_slot_block %}
               {% set content = TimberPost(box.slot_block_link) %}
               <div class="col-6 col-md-3">
-                  <a href="{{ content.guid }}" class="box-product" data-aos="fade-up" data-aos-duration="1000">
+                  <a href="{{ content.guid }}" class="box-product slot_game" data-slug="{{ content.postslug }}" data-aos="fade-up" data-aos-duration="1000">
                       {% if box.slot_block_hot == true %} 
                           <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
                       {% endif %}
@@ -59,7 +59,7 @@
               {% for box in options_casino_block %}
               {% set content = TimberPost(box.casino_block_link) %}
               <div class="col-6 col-md-3">
-                  <div class="box-product casino_game" id="{{ content.ID }}" data-aos="fade-up" data-aos-duration="1000">
+                  <div class="box-product casino_game" id="{{ content.ID }}" data-slug="{{ content.casino_parameter }}" data-aos="fade-up" data-aos-duration="1000">
                       <input type="hidden" value="{{ content.ID }},{{ content.casino_prefix }}" class="getlink"/>                <div class="box-product__logo">
                       {% if box.casino_block_hot == true %} 
                           <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
@@ -77,7 +77,7 @@
               {% for box in options_keno_block %}
               {% set content = TimberPost(box.keno_block_link) %}
               <div class="col-6 col-md-3">
-                  <div class="box-product keno" id="{{ content.ID }}" data-aos="fade-up" data-aos-duration="1000">
+                  <div class="box-product keno" id="{{ content.ID }}" data-slug="{{ content.keno_parameter }}" data-aos="fade-up" data-aos-duration="1000">
                       <input type="hidden" value="{{ content.ID }},{{ content.keno_prefix }}" class="getlinkkeno"/>                
                       <div class="box-product__logo">
                       {% if box.keno_block_hot == true %} 
