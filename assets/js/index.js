@@ -386,7 +386,7 @@ if (sessionStorage.getItem("token")) {
                         }
                     });
 
-                    var dataSlot = listData.lists.filter(item => item.type == 'slot');
+                    var dataSlot = listData.lists.filter(item => item.type == 'slot' ||  item.type == 'poker');
                     $.each(dataSlot, function(index,value) {
                         if(!value.active) {
                             $(`.slot_game[data-slug=${value.productCode}]`).addClass('disabled');
@@ -568,7 +568,7 @@ if (sessionStorage.getItem("token")) {
                 }
 
                 setTimeout(() => {
-                    var dataSlot = listData.lists.filter(item => item.type == 'slot');
+                    var dataSlot = listData.lists.filter(item => item.type == 'slot' ||  item.type == 'poker');
                     $.each(dataSlot, function(index,value) {
                         if(!value.active) {
                             $(`.slot_game[data-slug=${value.productCode}]`).addClass('disabled');
@@ -618,7 +618,7 @@ if (sessionStorage.getItem("token")) {
                             axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
                             let listGame;
 
-                            if (type == 'ambpoker') {
+                            if (type == 'amb-poker') {
                                 getGamelistamb();
                                 async function getGamelistamb() {
                                     let uri = url_listgame;
