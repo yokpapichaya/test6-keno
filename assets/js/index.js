@@ -695,48 +695,6 @@ if (sessionStorage.getItem("token")) {
                             let listGame;
                             var type = response.slugpost;
                             
-                            if (type == 'amb-poker') {
-                                getGamelistamb();
-                                async function getGamelistamb() {
-                                    let uri = url_listgame;
-                                    let resp = await axios.get(uri)
-                                    var status = listData.lists.filter(item => item.productCode == $('.game-list').data('slug'))[0];
-                                    if(status.active) {
-                                        if (resp.data.code == 0) {
-                                            listGame = resp.data.data;
-                                            listGame.forEach(data => {
-                                                $('.game-list').append(`<div class="col-lg-2 col-md-3 col-6">
-                                        <div class="box-card-promotion" data-game="${data.gameId}" data-key="${data.gameKey}" data-active="${data.isActive}">
-                                        <div class="box-card-promotion__img"><img class="list-image" src="${data.imageUrl}"></div>
-                                            <div class="box-card-promotion__caption">
-                                                ${data.gameName.en}
-                                            </div>
-                                        </div>
-                                    </div>`)
-                                            })
-                                        }else {
-                                            if(resp.data.message) {
-                                                $('.game-list').append(`<h3>${resp.data.message}</h3>`);
-                                            }else {
-                                                $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
-                                            }
-                                        }
-                                    }else {
-                                        $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
-                                    }
-                                    $('.box-card-promotion').on('click', function (e) {
-                                        if (!sessionStorage.getItem('token')) {
-                                            e.preventDefault();
-                                            window.location.href = location.hostname + '/login'
-                                        } else {
-                                            var card = $(this).data('game');
-                                            var active = $(this).data('active');
-                                            var key = $(this).data('key');
-                                            Loginambgame(card, active, key);
-                                        }
-                                    })
-                                }
-                            } else {
                                 getGamelistall();
                                 async function getGamelistall() {
                                     let uri = url_listgame;
@@ -815,7 +773,6 @@ if (sessionStorage.getItem("token")) {
                                         }
                                     })
                                 }
-                            }
         
                             //     Loginpost();
                             function isLine() {
@@ -917,6 +874,94 @@ if (sessionStorage.getItem("token")) {
                                     }
                                 }
         
+                            }
+                        }
+                    })
+            }
+        },
+        'single_poker': {
+            init: function () {
+        
+            },
+            finalize: async function () {
+                var listData;
+                const getJson = async function () {
+                    var data = await axios.get(`https://cdn.ambbet.com/gamelists-ambbet.json`);
+                    return data;
+                }
+                if (sessionStorage.getItem('data_slug')) {
+                    listData = JSON.parse(sessionStorage.getItem('data_slug'));
+                } else {
+                    var jsonData = await getJson();
+                    var gameItem = jsonData.data;
+                    listData = gameItem;
+                    sessionStorage.setItem('data_slug', JSON.stringify(gameItem));
+                }
+        
+                var id = $('.game-list').attr("id");
+                var url;
+                if (!url) url = window.location.href;
+                var text = url.split('/');
+                var type = text[text.length - 2];
+                
+                var img =
+                    $.ajax({
+                        type: "post",
+                        dataType: "json",
+                        url: myAjax.ajaxurl,
+                        data: {
+                            action: "get_list_game",
+                            post_id: id,
+                        },
+                        success: function (response) {
+                            var url_listgame = response.list_game_poker;
+                            var url_login = response.login_link;
+                            axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+                            let listGame;
+                            
+                            getGamelistamb();
+                            async function getGamelistamb() {
+                                let uri = url_listgame;
+                                let resp = await axios.get(uri)
+                                var status = listData.lists.filter(item => item.productCode == $('.game-list').data('slug'))[0];
+                                if(status.active) {
+                                    if (resp.data.code == 0) {
+                                        listGame = resp.data.data;
+                                        listGame.forEach(data => {
+                                            $('.game-list').append(`<div class="col-lg-2 col-md-3 col-6">
+                                    <div class="box-card-promotion" data-game="${data.gameId}" data-key="${data.gameKey}" data-active="${data.isActive}">
+                                    <div class="box-card-promotion__img"><img class="list-image" src="${data.imageUrl}"></div>
+                                        <div class="box-card-promotion__caption">
+                                            ${data.gameName.en}
+                                        </div>
+                                    </div>
+                                </div>`)
+                                        })
+                                    }else {
+                                        if(resp.data.message) {
+                                            $('.game-list').append(`<h3>${resp.data.message}</h3>`);
+                                        }else {
+                                            $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                        }
+                                    }
+                                }else {
+                                    $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                }
+                                $('.box-card-promotion').on('click', function (e) {
+                                    if (!sessionStorage.getItem('token')) {
+                                        e.preventDefault();
+                                        window.location.href = location.hostname + '/login'
+                                    } else {
+                                        var card = $(this).data('game');
+                                        var active = $(this).data('active');
+                                        var key = $(this).data('key');
+                                        Loginambgame(card, active, key);
+                                    }
+                                })
+                            }
+        
+                            function isLine() {
+                                return /Line/i.test(navigator.userAgent);
                             }
                             async function Loginambgame(gameId, isActive, gameKey) {
         

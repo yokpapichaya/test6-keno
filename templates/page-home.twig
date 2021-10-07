@@ -32,10 +32,10 @@
         <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab" aria-controls="nav-slot" aria-selected="true">สล็อต</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-casino" role="tab" aria-controls="nav-casino" aria-selected="false">คาสิโน</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-poker" role="tab" aria-controls="nav-poker" aria-selected="false">โป๊กเกอร์</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-keno" role="tab" aria-controls="nav-keno" aria-selected="false">คีโน</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-trading" role="tab" aria-controls="nav-trading" aria-selected="false">เทรดดิ้ง</a>
           </div>
-        </div>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
             <div class="row">
@@ -69,6 +69,24 @@
                           <div class="logo"><img src="{{ TimberImage(box.casino_block_logo).src }}"></div>
                       </div>
                   </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-poker" role="tabpanel" aria-labelledby="nav-poker-tab">
+            <div class="row">
+              {% for box in options_poker_block %}
+              {% set content = TimberPost(box.poker_block_link) %}
+              <div class="col-6 col-md-3">
+                  <a href="{{ content.guid }}" class="box-product poker" data-slug="{{ content.postslug }}" data-aos="fade-up" data-aos-duration="1000">
+                      {% if box.poker_block_hot == true %} 
+                          <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
+                      {% endif %}
+                      <div class="box-product__overlay"><div class="btn btn-game">เล่นเกม</div></div>
+                      <div class="box-product__logo">
+                          <div class="logo"><img src="{{ TimberImage(box.poker_block_logo).src }}"></div>
+                      </div>
+                  </a>
               </div>
               {% endfor %}
             </div>
