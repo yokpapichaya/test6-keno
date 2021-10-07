@@ -204,6 +204,12 @@ class StarterSite extends Timber\Site {
 			));
 
 			acf_add_options_page(array(
+				'page_title' 	=> 'เทรดดิ้ง',
+				'menu_slug' 	=> 'p_trading',
+				'icon_url' => 'dashicons-chart-line',
+			));
+
+			acf_add_options_page(array(
 				'page_title' 	=> 'ติดต่อเรา',
 				'menu_slug' 	=> 'contact',
 				'icon_url' => 'dashicons-phone',
@@ -314,6 +320,8 @@ if ( get_current_user_id() != 1 ) {
 	  remove_menu_page('cptui_main_menu');				//cpui plugin
 	  remove_menu_page('edit.php?post_type=casino_game');  // casino post type
 	  remove_menu_page('edit.php?post_type=slot_game');    // slot post type
+	  remove_menu_page('edit.php?post_type=keno');    // keno post type
+	  remove_menu_page('edit.php?post_type=trading');    // trading post type
 	  remove_menu_page( 'edit.php?post_type=acf-field-group' ); //acf plugin
 	  remove_menu_page( 'index.php' ); 		
 	  	if(wp_get_current_user()->roles[0] == 'author') {
@@ -428,26 +436,16 @@ function my_login_logo_one() {
 	 ';
 } add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
 
-function autologin() {
-	// PARAMETER TO CHECK FOR
-	if(isset($_GET['autologin'])) {
-		if ($_GET['autologin'] == 'demo') {
-		
-			// ACCOUNT USERNAME TO LOGIN TO
-			$creds['user_login'] = 'ambdemo';
-			
-			// ACCOUNT PASSWORD TO USE
-			$creds['user_password'] = '@e^D1WZrAtYys$RfSaN)Kukq';
-			
-			$creds['remember'] = true;
-			$autologin_user = wp_signon( $creds, true );
-			
-			if ( !is_wp_error($autologin_user) ) 
-				header('Location: wp-admin'); // LOCATION TO REDIRECT TO
-		}
-	}
-	
+add_action( 'acf/save_post', 'function_purge_cache');
+add_filter( 'wpo_purge_all_cache_on_update', '__return_true' );
+
+function function_purge_cache() {
+	WP_Optimize()->get_page_cache()->purge();
 }
-// ADD CODE JUST BEFORE HEADERS AND COOKIES ARE SENT
-add_action( 'after_setup_theme', 'autologin' );
+
+add_filter('safe_style_css', 'add_display_to_safe_css', 10, 1);
+function add_display_to_safe_css($css_attributes) {
+$css_attributes[] = 'display';
+return $css_attributes;
+}
 new StarterSite();

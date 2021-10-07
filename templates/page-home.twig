@@ -33,8 +33,9 @@
             <a class="nav-item nav-link active" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab" aria-controls="nav-slot" aria-selected="true">สล็อต</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-casino" role="tab" aria-controls="nav-casino" aria-selected="false">คาสิโน</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-keno" role="tab" aria-controls="nav-keno" aria-selected="false">คีโน</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-trading" role="tab" aria-controls="nav-trading" aria-selected="false">เทรดดิ้ง</a>
           </div>
-        </nav>
+        </div>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
             <div class="row">
@@ -85,6 +86,25 @@
                       {% endif %}
                           <div class="box-product__overlay"><div class="btn btn-game">เล่นเกม</div></div>
                           <div class="logo"><img src="{{ TimberImage(box.keno_block_logo).src }}"></div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-trading" role="tabpanel" aria-labelledby="nav-trading-tab">
+            <div class="row">
+              {% for box in options_trading_block %}
+              {% set content = TimberPost(box.trading_block_link) %}
+              <div class="col-6 col-md-3">
+                  <div class="box-product trading" id="{{ content.ID }}" data-slug="{{ content.trading_parameter }}" data-aos="fade-up" data-aos-duration="1000">
+                      <input type="hidden" value="{{ content.ID }},{{ content.trading_prefix }}" class="getlinktrading"/>                
+                      <div class="box-product__logo">
+                      {% if box.trading_block_hot == true %} 
+                          <div class="box-product__hot" style="background-image: url('{{ theme.path }}/images/hot.gif');"></div>
+                      {% endif %}
+                          <div class="box-product__overlay"><div class="btn btn-game">เล่นเกม</div></div>
+                          <div class="logo"><img src="{{ TimberImage(box.trading_block_logo).src }}"></div>
                       </div>
                   </div>
               </div>
